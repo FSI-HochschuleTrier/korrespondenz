@@ -1,0 +1,62 @@
+
+\makeatletter
+\def\ps@firstpage{
+  \renewcommand{\baselinestretch}{1.0}
+  \ifcase \@ptsize\relax \normalsize \or \small \or \footnotesize \fi
+  \headheight16pt\headsep63mm
+  \def\@oddhead{
+    \unitlength1mm
+    \begin{picture}(0,0)
+    	\put(-10,-8){\includegraphics[width=7.0cm]{logo_fachschaftsrat.eps}}
+      \put(-9, 3){\parbox{180mm}{\Large \ifklassisch \quad\name %\textsl{} entfernt
+          \else %\quad\name %
+           \fi}} %\textsl{} entfernt
+      \put(-9, 4){\parbox{180mm}{\hfill \normalsize \ifklassisch \textsl{
+            \begin{tabular}{r} \strasse \quad \\ \ifx \zusatz\empty \else
+              \zusatz \quad \\ \fi \ort \quad \ifx \land\empty \else \\
+              \land \quad \fi \end{tabular}} \else \textsc{
+            \begin{tabular}{r} \strasse \quad \\ \ifx \zusatz\empty \else
+              \zusatz \quad \\ \fi \ort \quad \ifx \land\empty \else \\
+              \land \quad \fi \end{tabular}} \fi}}
+      %\iftrennlinien \put(-9,-7){\rule{180mm}{0.5pt}} \fi
+      \iflochermarke \put(-20,- 130.50){\line(1,0){4}} \fi
+      \iffaltmarken \put(-15,- 75.16){\line(1,0){3}}
+      \put(-15,-182.16){\line(1,0){3}} \fi
+      \put( -9, -22.00){\makebox(85,4)
+        {\scriptsize \ifx \retouradresse\empty
+          \textrm{\name\ $\cdot$\ \strasse\ $\cdot$\ \ort \ifx
+              \land\empty \else \ $\cdot$\ \land \fi } \else
+            \textrm{\retouradresse} \fi}}
+      \iftrennlinien \put( -9, -22.10){\line(1,0){85}} \fi
+      \put(-1,-28.15){\parbox[t]{3in}{\ifx \postvermerk\empty \hfill \par
+          \else \textbf{\postvermerk} \par \vspace{2mm} \fi \adresse}}
+      \iffenstermarken
+      \put(-9,-18.15){\line( 1, 0){1}} \put(-9,-18.15){\line( 0,-1){1}}
+      \put(76,-18.15){\line(-1, 0){1}} \put(76,-18.15){\line( 0,-1){1}}
+      \put(-9,-61.00){\line( 1, 0){1}} \put(-9,-61.00){\line( 0, 1){1}}
+      \put(76,-61.00){\line(-1, 0){1}} \put(76,-61.00){\line( 0, 1){1}}
+      \fi
+    \end{picture}
+    \hfill}
+  \def\@oddfoot{\unitlength1mm
+    \begin{picture}(0,0)
+      \put(-9,0){\parbox{180mm}{\footnotesize \iftrennlinien
+          \rule{180mm}{0.5pt} \fi
+          \\
+                    \begin{tabular}{ll}
+            \ifx \telefon\empty \else \telefontex & \telefon \\ \fi \ifx
+            \telefax\empty \else \telefaxtext & \telefax \\ \fi \ifx
+            \telex\empty \else \telextext & \telex \\ \fi \ifx
+            \email\empty \else \emailtext & \email \\ \fi \ifx
+            \http\empty \else \httptext & \http \\ \fi 
+            \multicolumn{2}{l}{\geschaeftsform}\\
+          \end{tabular}\hfill
+          \begin{tabular}{ll}
+           ~ & ~  \\
+            \ifx \bank\empty \else \ifx \blz\empty \else \ifx
+            \konto\empty \else \banktext & \bank \\ & \blztext \space \blz
+            \\ & \kontotext \space \konto \\ \ \fi \fi \fi
+          \end{tabular}}}
+    \end{picture} \hfill}
+  \def\@evenhead{\@oddhead} \def\@evenfoot{\@oddfoot}}
+\makeatother
